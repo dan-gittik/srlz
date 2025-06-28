@@ -150,7 +150,7 @@ class Serialization:
     def deserialize(self, data: SimpleType) -> Any:
         self._check_balance()
         if isinstance(data, dict) and len(data) == 1:
-            key, value = data.popitem()
+            [(key, value)] = data.items()
             if key in self.deserializers:
                 return self.deserialize_value(key, value)
             return {key: self.deserialize(value)}
